@@ -30,6 +30,24 @@ app.get("/tasks/new", (_req, res) => {
   res.render("pages/create");
 });
 
+app.delete("/tasks/:columnId/:taskId", async (_req, res) => {
+  const { columnId, taskId } = _req.params;
+
+  const columns = await readTasks();
+
+  const clmnIndex = columns.findIndex(clmn => clmn.name === columnId)
+
+  const taskIndex = columns[clmnIndex].tasks.findIndex(task => task.name === taskId)
+
+  columns[clmnIndex].tasks.splice(taskIndex, 1)
+
+  console.log(columns)
+
+  await writeTasks(columns);
+
+  res.redirect("/board");
+});
+
 async function writeTasks(tasks: Task[]) {
   await Deno.writeTextFile("./data.json", JSON.stringify(tasks));
 }
@@ -38,6 +56,7 @@ async function readTasks() {
   const data = await Deno.readTextFile("./data.json");
   return JSON.parse(data);
 }
+
 
 app.post("/tasks", async (req, res) => {
   const taskName = req.body.taskName;

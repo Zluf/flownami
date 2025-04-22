@@ -3,7 +3,7 @@
   <ol class="tasks">
     <% tasks.forEach(task => {%>
       <li>
-        <%- include('./task', task) %>
+        <%- include('./task', { ...task, columnName: name }) %>
       </li>
     <% }) %>
   </ol>
