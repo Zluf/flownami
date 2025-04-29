@@ -1,15 +1,17 @@
 <article class="task">
-  <h1><%= name %> (in <%= columnName %>)</h1>
-  <a 
-    href="http://localhost:8080/tasks/<%= columnName %>/<%= name %>" 
-    class="btn-close"
-    onclick="event.preventDefault(); deleteTask('<%= columnName %>', '<%= name %>');"
-  >
-    ❌
-  </a>
+     <h1><%= name %> (in <%= columnName %>)</h1>
+     <button
+          href="http://localhost:8080/tasks/<%= columnName %>/<%= name %>"
+          class="btn-close"
+          onclick="deleteTask('<%= columnName %>', '<%= name %>');"
+     >
+          ❌
+     </button>
 </article>
 <script>
-  function deleteTask(columnName, taskName) {
-    fetch(`tasks/${columnName}/${taskName}`, { method: 'DELETE' })
-  }
+     function deleteTask(columnName, taskName) {
+          fetch(`tasks/${columnName}/${taskName}`, { method: 'DELETE' }).then(
+               () => window.location.reload()
+          )
+     }
 </script>

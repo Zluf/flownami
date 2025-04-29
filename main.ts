@@ -45,7 +45,7 @@ app.delete("/tasks/:columnId/:taskId", async (_req, res) => {
 
   await writeTasks(columns);
 
-  res.redirect("/board");
+  res.send("/board");
 });
 
 async function writeTasks(tasks: Task[]) {
