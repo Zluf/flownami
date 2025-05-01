@@ -1,14 +1,52 @@
 <%- include('../../partials/header'); %>
 
 <main class="board">
-  <a href="http://localhost:8080/tasks/new">Add Task</a>
-  <ol class="columns">
-    <% columns.forEach(column => {%>
-      <li>
-        <%- include('./partials/column', column) %>
-      </li>
-    <% }) %>
-  </ol>
+     <a href="http://localhost:8080/tasks/new">Add Task</a>
+     <ol class="columns">
+          <% columns.forEach(column => {%>
+          <li><%- include('./partials/column', column) %></li>
+          <% }) %>
+     </ol>
 </main>
+<script>
+     async function deleteTask(event, columnName, taskName) {
+          await fetch(`tasks/${columnName}/${taskName}`, { method: 'DELETE' })
+          event.target.parentNode.remove()
+     }
+
+     function getData(event) {
+          return {
+               columnName: event.currentTarget
+                    .closest('.task')
+                    .querySelector('h1').innerText,
+               taskName: event.currentTarget
+                    .closest('.column')
+                    .querySelector('h1').innerText,
+          }
+     }
+
+     function dragStartHandler(event) {
+          // Get the HTML content of the target element
+          const targetHTML = event.currentTarget.outerHTML
+
+          // Set the HTML content in the dataTransfer object
+          event.dataTransfer.setData('text/html', targetHTML)
+
+          console.log('Drag START', event.currentTarget.className)
+     }
+
+     function dragLeaveHandler(event) {
+          event.currentTarget.className = 'task-slot'
+          event.currentTarget.outerHTML = null
+          console.log('Drag LEAVE')
+     }
+
+     function dragEnterHandler(event) {
+          event.currentTarget.outerHTML =
+               event.dataTransfer.getData('text/html')
+          event.currentTarget.className = 'task'
+          console.log('Drag ENTER', event.currentTarget.className)
+     }
+</script>
 
 <%- include('../../partials/footer'); %>

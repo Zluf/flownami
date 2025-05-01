@@ -1,10 +1,24 @@
 <section class="column">
-  <h1><%= name %></h1>
-  <ol class="tasks">
-    <% tasks.forEach(task => {%>
-      <li>
-        <%- include('./task', { ...task, columnName: name }) %>
-      </li>
-    <% }) %>
-  </ol>
+     <h1><%= name %></h1>
+     <ol class="tasks">
+          <li
+               class="task-slot"
+               ondragenter="dragEnterHandler(event)"
+               ondragleave="dragLeaveHandler(event)"
+          ></li>
+          <% tasks.forEach(task => {%>
+          <li
+               draggable="true"
+               ondragstart="dragStartHandler(event)"
+               ondragleave="dragLeaveHandler(event)"
+          >
+               <%- include('./task', { ...task, columnName: name }) %>
+          </li>
+          <li
+               class="task-slot"
+               ondragenter="dragEnterHandler(event)"
+               ondragleave="dragLeaveHandler(event)"
+          ></li>
+          <% }) %>
+     </ol>
 </section>

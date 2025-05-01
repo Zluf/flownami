@@ -3,15 +3,8 @@
      <button
           href="http://localhost:8080/tasks/<%= columnName %>/<%= name %>"
           class="btn-close"
-          onclick="deleteTask('<%= columnName %>', '<%= name %>');"
+          onclick="deleteTask(event, '<%= columnName %>', '<%= name %>');"
      >
           ❌
      </button>
 </article>
-<script>
-     function deleteTask(columnName, taskName) {
-          fetch(`tasks/${columnName}/${taskName}`, { method: 'DELETE' }).then(
-               () => window.location.reload()
-          )
-     }
-</script>
