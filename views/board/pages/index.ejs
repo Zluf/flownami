@@ -3,8 +3,8 @@
 <main class="board">
      <a href="http://localhost:8080/tasks/new">Add Task</a>
      <ol class="columns">
-          <% columns.forEach(column => {%>
-          <li><%- include('./partials/column', column) %></li>
+          <% board.forEach(column => {%>
+          <li><%- include('../partials/column', column) %></li>
           <% }) %>
      </ol>
 </main>

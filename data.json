@@ -1,1 +1,5 @@
-[{"name":"To Do","tasks":[{"name":"1.Hello"},{"name":"2.Test"},{"name":"3.Mega Test"},{"name":"4.Test 4"},{"name":"5.asdf"}]},{"name":"Doing","tasks":[{"name":"In progress..."}]},{"name":"Done","tasks":[{"name":"Finished this one"},{"name":"And this one"},{"name":"Crikey,"},{"name":"Wasn't I..."},{"name":"Productive!"}]}]
+[{
+  "id": "278c5e66-1d97-4888-aa37-9893eba64229",
+  "name": "New task",
+  "column": "To Do"
+}]
