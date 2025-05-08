@@ -18,7 +18,7 @@ Deno.test("generate a Board", async () => {
 
   const taskRepo = {
     readTasks: readTasksSpy,
-  } as unknown as TaskRepo;
+  } as unknown as TaskRepo; // unknown is needed to avoid other fields of TaskRepo type
 
   const board = await generateBoard(taskRepo);
 
